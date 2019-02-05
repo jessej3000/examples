@@ -26,26 +26,17 @@ type pair struct {
 }
 
 // New create a new instance of QueryLog
-func New(filepath string,
+func New(
 	reportType string,
 	numberOfEntry int,
 	status bool,
 	getMethod bool,
 	noGif bool) *QueryLog {
-	var err error
-	var tmpFile *os.File
-
-	tmpFile, err = os.Open(filepath)
-	if err != nil {
-		tmpFile.Close()
-		panic(err)
-	}
 
 	q := &QueryLog{
 		// Initialize property
 		ReportType:    reportType,
 		NumberOfEntry: numberOfEntry,
-		LogFile:       tmpFile,
 		Status:        status,
 		GetMethod:     getMethod,
 		NoGIF:         noGif,
@@ -55,7 +46,18 @@ func New(filepath string,
 }
 
 // Analyze log file
-func (q *QueryLog) Analyze() []string {
+func (q *QueryLog) Analyze(filepath string) []string {
+	var err error
+	var tmpFile *os.File
+
+	tmpFile, err = os.Open(filepath)
+	if err != nil {
+		tmpFile.Close()
+		panic(err)
+	}
+
+	q.LogFile = tmpFile
+
 	var urlsMap map[string]float64
 	var urlsCounter map[string]int
 	var pairs []pair

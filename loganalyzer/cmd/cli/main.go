@@ -26,7 +26,6 @@ func main() {
 
 	// Initialize and start analyzer
 	a := analyzer.New(
-		args[len(args)-1],
 		*reportType,
 		*entries,
 		*status,
@@ -35,7 +34,7 @@ func main() {
 	)
 
 	// Get result and display
-	result := a.Analyze()
+	result := a.Analyze(args[len(args)-1])
 	if *displayList {
 		fmt.Println(result)
 	} else {

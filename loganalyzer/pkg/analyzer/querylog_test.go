@@ -17,7 +17,6 @@ import (
 // TestAverage Test to make sure the normal command brings out expected result
 func TestAverage(t *testing.T) {
 	a := New(
-		"test_average.log",
 		"minimal",
 		10,
 		true,
@@ -27,7 +26,7 @@ func TestAverage(t *testing.T) {
 
 	checker := []string{"/vendor/bootstrap.min.js", "/articles.html?id=4"}
 
-	result := a.Analyze()
+	result := a.Analyze("test_average.log")
 
 	if !reflect.DeepEqual(result, checker) {
 		t.Errorf("Invalid result Average.")
@@ -38,7 +37,6 @@ func TestAverage(t *testing.T) {
 // TestLowerUpperCase checks case-insensitive urls
 func TestLowerUpperCase(t *testing.T) {
 	a := New(
-		"test_loweruppercase.log",
 		"minimal",
 		10,
 		true,
@@ -51,7 +49,7 @@ func TestLowerUpperCase(t *testing.T) {
 		"/articles.html?id=4",
 		"/vendor/bootstrap2.min.js"}
 
-	result := a.Analyze()
+	result := a.Analyze("test_loweruppercase.log")
 
 	if !reflect.DeepEqual(result, checker) {
 		t.Errorf("Invalid result for LowerUpperCase.")
@@ -61,7 +59,6 @@ func TestLowerUpperCase(t *testing.T) {
 // TestGIF test if no gif request are included
 func TestGIF(t *testing.T) {
 	a := New(
-		"test_gif.log",
 		"minimal",
 		10,
 		true,
@@ -74,7 +71,7 @@ func TestGIF(t *testing.T) {
 		"/articles.html?id=4",
 		"/vendor/bootstrap2.min.js"}
 
-	result := a.Analyze()
+	result := a.Analyze("test_gif.log")
 
 	if !reflect.DeepEqual(result, checker) {
 		t.Errorf("Invalid result for GIF.")
@@ -86,7 +83,6 @@ func TestGIF(t *testing.T) {
 // It also test that the list should not exceed 10 items
 func TestOrderAnd10Entries(t *testing.T) {
 	a := New(
-		"test_orderand10entries.log",
 		"complete",
 		10, // Value 11 or higher will fail the test which is expected
 		true,
@@ -106,7 +102,7 @@ func TestOrderAnd10Entries(t *testing.T) {
 		"/vendor/bootstrap2.min.js : 6.23s : 8 entries",
 		"/articles1.html?id=4 : 5.23s : 4 entries"}
 
-	result := a.Analyze()
+	result := a.Analyze("test_orderand10entries.log")
 
 	if !reflect.DeepEqual(result, checker) {
 		t.Errorf("Invalid result for OrderAnd10Entries.")
