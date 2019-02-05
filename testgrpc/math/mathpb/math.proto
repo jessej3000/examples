@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package math;
+option go_package = "mathpb";
+
+message Numbers{
+  int32 num1 = 1;
+  int32 num2 = 2;
+};
+
+message NumbersRequest{
+  Numbers numbers = 1;
+}
+
+message NumbersResponse{
+  int32 result = 1;
+}
+
+service NumbersService{
+  // Unary
+  rpc Compute(NumbersRequest) returns (NumbersResponse) {};
+};
