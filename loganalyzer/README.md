@@ -32,7 +32,8 @@ Files
 
 # Some explanation 
 - Command line flags
-    -r = minimal | complete : Default minimal. Shows full or minimal report
+
+    	-r = minimal | complete : Default minimal. Shows full or minimal report
 	-e = 10 : Default 10. Number of log entries to be reported
 	-l = true : Default true, Displayed as list or not
 	-g = true : Default true. No GIFs if set to true and shows GIF if false
@@ -40,7 +41,7 @@ Files
 	-m = true : Default true. Only display request with status 200. Will display other status if false
 
 - New: Creates a new QueryLog object with the following parameters:
-    reportType string : taken from flag -r
+    	reportType string : taken from flag -r
 	numberOfEntry int : taken from flag -e
 	status bool : taken from flag -s
 	getMethod bool : taken from flag -m
